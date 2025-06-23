@@ -12,10 +12,10 @@ export function PhotosNew({ onCreate }) {
   return (
     <div>
       <h1>New Photo</h1>
-      <form> onSubmit={handleSubmit}
-        <div>
+      <form onSubmit={handleSubmit}>
+        {/* <div>
           Name: <input name="name" type="text" />
-        </div>
+        </div> */}
         <div>
           Url: <input name="url" type="text" />
         </div>
