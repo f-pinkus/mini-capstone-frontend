@@ -1,4 +1,4 @@
-export function PhotosNew({ onCreate }) {
+export function ProductsNew({ onCreate }) {
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -11,19 +11,22 @@ export function PhotosNew({ onCreate }) {
 
   return (
     <div>
-      <h1>New Photo</h1>
+      <h1>New Product</h1>
       <form onSubmit={handleSubmit}>
         {/* <div>
           Name: <input name="name" type="text" />
         </div> */}
         <div>
-          Url: <input name="url" type="text" />
+          Name: <input name="name" type="text" />
         </div>
         <div>
-          Width: <input name="width" type="text" />
+          Price: <input name="price" type="text" />
         </div>
         <div>
-          Height: <input name="height" type="text" />
+          Description: <input name="description" type="text" />
+        </div>
+        <div>
+          Supplier: <input name="supplier_id" type="text" />
         </div>
         <button type="submit">Create</button>
       </form>

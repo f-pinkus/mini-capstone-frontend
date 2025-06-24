@@ -1,8 +1,10 @@
 import axios from "axios";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 export function LoginPage() {
   const [errors, setErrors] = useState([]);
+  const navigate = useNavigate();
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -14,7 +16,7 @@ export function LoginPage() {
         console.log(response.data);
         localStorage.setItem("email", response.data.email);
         event.target.reset();
-        window.location.reload(); // Refresh page to update login state
+        navigate("/"); // Navigate to photos page after successful login
       })
       .catch((error) => {
         console.log(error.response);
