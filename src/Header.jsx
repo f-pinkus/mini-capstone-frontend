@@ -1,9 +1,8 @@
 import { Link } from "react-router-dom";
 import { LogoutLink } from "./LogoutLink";
 
-export function Header() {
+export function Header({ isLoggedIn, setIsLoggedIn }) {
   // Check if user is logged in by looking for email in localStorage
-  const isLoggedIn = !!localStorage.getItem("email");
 
   return (
     <header>
@@ -12,7 +11,7 @@ export function Header() {
           <Link to="/">Your App Name</Link>
           <div>
             {isLoggedIn ? (
-              <LogoutLink />
+              <LogoutLink setIsLoggedIn={setIsLoggedIn}/>
             ) : (
               <>
                 <Link to="/signup">Sign Up</Link> | <Link to="/login">Login</Link>

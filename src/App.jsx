@@ -1,6 +1,6 @@
 import axios from "axios";
 import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
-
+import { useState, useEffect } from "react";
 import { Header } from "./Header";
 import { ProductsPage } from "./ProductsPage";
 import { SignupPage } from "./SignupPage";
@@ -9,15 +9,25 @@ import { Footer } from "./Footer";
 
 axios.defaults.withCredentials = true;
 
+function Layout() {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  useEffect(() => {
+    setIsLoggedIn(!!localStorage.getItem("email"));
+  }, []);
+
+  return (
+    <div>
+      <Header isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn}/>
+      <Outlet context={{setIsLoggedIn}}/>
+      <Footer />
+    </div>
+  );
+}
+
 const router = createBrowserRouter([
   {
-    element: (
-      <div>
-        <Header />
-        <Outlet />
-        <Footer />
-      </div>
-    ),
+    element: <Layout />,
+    
     children: [
       {
         path: "/",

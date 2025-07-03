@@ -1,10 +1,11 @@
 import axios from "axios";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useOutletContext } from "react-router-dom";
 
 export function LoginPage() {
   const [errors, setErrors] = useState([]);
   const navigate = useNavigate();
+  const { setIsLoggedIn } = useOutletContext
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -15,6 +16,7 @@ export function LoginPage() {
       .then((response) => {
         console.log(response.data);
         localStorage.setItem("email", response.data.email);
+        setIsLoggedIn(true);
         event.target.reset();
         navigate("/"); // Navigate to photos page after successful login
       })
