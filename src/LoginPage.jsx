@@ -5,7 +5,9 @@ import { useNavigate, useOutletContext } from "react-router-dom";
 export function LoginPage() {
   const [errors, setErrors] = useState([]);
   const navigate = useNavigate();
-  const { setIsLoggedIn } = useOutletContext
+  // useOutletContext gets data passed from the parent Layout component
+  // This gives us access to setIsLoggedIn so we can update the auth state after login
+  const { setIsLoggedIn } = useOutletContext();
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -16,7 +18,7 @@ export function LoginPage() {
       .then((response) => {
         console.log(response.data);
         localStorage.setItem("email", response.data.email);
-        setIsLoggedIn(true);
+        setIsLoggedIn(true); // Update the authentication state
         event.target.reset();
         navigate("/"); // Navigate to photos page after successful login
       })

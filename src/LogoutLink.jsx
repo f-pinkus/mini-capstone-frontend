@@ -9,7 +9,7 @@ export function LogoutLink({ setIsLoggedIn }) {
     axios.delete("http://localhost:3000/logout").then((response) => {
       console.log(response);
       localStorage.removeItem("email");
-      setIsLoggedIn(false);
+      setIsLoggedIn(false); // Update the authentication state
       navigate("/"); // Navigate to photos page after logout
     });
   };
