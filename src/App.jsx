@@ -28,7 +28,7 @@ function Layout() {
     if (isLoggedIn) {
       handleCartIndex();
     }
-  }, []);
+  }, [isLoggedIn]);
 
   const handleCartIndex = () => {
     console.log("handleCartIndex");
