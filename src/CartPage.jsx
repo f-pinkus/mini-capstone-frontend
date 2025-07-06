@@ -1,7 +1,20 @@
-import { useOutletContext, Link } from "react-router-dom";
+import { useOutletContext, Link, useNavigate } from "react-router-dom";
+import axios from "axios";
 
 export function CartPage() {
   const { cartItems, onRemoveFromCart } = useOutletContext();
+  const navigate = useNavigate();
+
+  const handleCreateOrder = () => {
+    console.log("handleCreateOrder");
+    axios.post("http://localhost:3000/orders.json").then((response) => {
+      console.log("Order Created:", response.data);
+      navigate("/orders");
+    })
+    .catch((error) => {
+      console.error("Error creating order:", error);
+    });
+  }
 
   return (
     <main>
@@ -17,7 +30,10 @@ export function CartPage() {
           <button onClick={() => onRemoveFromCart(cartItem)}>Remove from Cart</button>
         </div>
       ))}
-      
+
+      {cartItems.length > 0 && (
+        <button onClick={handleCreateOrder}>Place Order</button>
+      )}      
       <p><Link to="/">Back to Products</Link></p>
     </main>
   );
