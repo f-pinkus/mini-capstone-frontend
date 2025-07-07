@@ -15,7 +15,7 @@ export function LogoutLink({ setIsLoggedIn }) {
   };
 
   return (
-    <button onClick={handleClick}>
+    <button onClick={handleClick} className="btn btn-outline-danger">
       Logout
     </button>
   );

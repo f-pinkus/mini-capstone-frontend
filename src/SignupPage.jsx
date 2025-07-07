@@ -24,27 +24,47 @@ export function SignupPage() {
   };
 
   return (
-    <div id="signup">
-      <h1>Signup</h1>
-      <ul>
-        {errors.map((error) => (
-          <li key={error}>{error}</li>
-        ))}
-      </ul>
-      <form onSubmit={handleSubmit}>
-        <div>
-          Name: <input name="name" type="text" />
+    <div className="container my-5" id="signup">
+      <h1 className="mb-4">Signup</h1>
+
+      {errors.length > 0 && (
+        <div className="alert alert-danger">
+          <ul className="mb-0">
+            {errors.map((error) => (
+              <li key={error}>{error}</li>
+            ))}
+          </ul>
         </div>
-        <div>
-          Email: <input name="email" type="email" />
+      )}
+
+      <form onSubmit={handleSubmit} className="needs-validation" noValidate>
+        <div className="mb-3">
+          <label htmlFor="name" className="form-label">Name:</label>
+          <input name="name" type="text" id="name" className="form-control" required />
         </div>
-        <div>
-          Password: <input name="password" type="password" />
+
+        <div className="mb-3">
+          <label htmlFor="email" className="form-label">Email:</label>
+          <input name="email" type="email" id="email" className="form-control" required />
         </div>
-        <div>
-          Password confirmation: <input name="password_confirmation" type="password" />
+
+        <div className="mb-3">
+          <label htmlFor="password" className="form-label">Password:</label>
+          <input name="password" type="password" id="password" className="form-control" required />
         </div>
-        <button type="submit">Signup</button>
+
+        <div className="mb-3">
+          <label htmlFor="password_confirmation" className="form-label">Password Confirmation:</label>
+          <input
+            name="password_confirmation"
+            type="password"
+            id="password_confirmation"
+            className="form-control"
+            required
+          />
+        </div>
+
+        <button type="submit" className="btn btn-primary">Signup</button>
       </form>
     </div>
   );

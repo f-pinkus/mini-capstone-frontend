@@ -10,7 +10,7 @@ export function ProductsPage() {
   const [products, setProducts] = useState([]);
   const [isProductsShowVisible, setIsProductsShowVisibile] = useState(false);
   const [currentProduct, setCurrentProduct] = useState({});
-  
+
   // Get cart functions from the Layout context
   const { onAddToCart } = useOutletContext();
 
@@ -28,22 +28,36 @@ export function ProductsPage() {
       .then((response) => {
         setProducts([...products, response.data]);
         successCallback();
-      })
-  }
+      });
+  };
 
   const handleShow = (product) => {
     console.log("handleShow", product);
     setIsProductsShowVisibile(true);
     setCurrentProduct(product);
-  }
+  };
 
   useEffect(handleIndex, []);
 
-    return (
-    <main>
-      <ProductsNew onCreate={handleCreate} />
-      <ProductsIndex products={products} onShow={handleShow} onAddToCart={onAddToCart} />
-      <Modal show={isProductsShowVisible} onClose={() => setIsProductsShowVisibile(false)} >
+  return (
+    <main className="container my-4">
+      <div className="row mb-4">
+        <div className="col">
+          <ProductsNew onCreate={handleCreate} />
+        </div>
+      </div>
+
+      <div className="row">
+        <div className="col">
+          <ProductsIndex
+            products={products}
+            onShow={handleShow}
+            onAddToCart={onAddToCart}
+          />
+        </div>
+      </div>
+
+      <Modal show={isProductsShowVisible} onClose={() => setIsProductsShowVisibile(false)}>
         <ProductsShow product={currentProduct} />
       </Modal>
     </main>

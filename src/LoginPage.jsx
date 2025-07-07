@@ -5,8 +5,6 @@ import { useNavigate, useOutletContext } from "react-router-dom";
 export function LoginPage() {
   const [errors, setErrors] = useState([]);
   const navigate = useNavigate();
-  // useOutletContext gets data passed from the parent Layout component
-  // This gives us access to setIsLoggedIn so we can update the auth state after login
   const { setIsLoggedIn } = useOutletContext();
 
   const handleSubmit = (event) => {
@@ -18,9 +16,9 @@ export function LoginPage() {
       .then((response) => {
         console.log(response.data);
         localStorage.setItem("email", response.data.email);
-        setIsLoggedIn(true); // Update the authentication state
+        setIsLoggedIn(true);
         event.target.reset();
-        navigate("/"); // Navigate to photos page after successful login
+        navigate("/");
       })
       .catch((error) => {
         console.log(error.response);
@@ -29,21 +27,31 @@ export function LoginPage() {
   };
 
   return (
-    <div id="login">
-      <h1>Login</h1>
-      <ul>
-        {errors.map((error) => (
-          <li key={error}>{error}</li>
-        ))}
-      </ul>
-      <form onSubmit={handleSubmit}>
-        <div>
-          Email: <input name="email" type="email" />
+    <div className="container my-5" id="login">
+      <h1 className="mb-4">Login</h1>
+
+      {errors.length > 0 && (
+        <div className="alert alert-danger">
+          <ul className="mb-0">
+            {errors.map((error) => (
+              <li key={error}>{error}</li>
+            ))}
+          </ul>
         </div>
-        <div>
-          Password: <input name="password" type="password" />
+      )}
+
+      <form onSubmit={handleSubmit} noValidate>
+        <div className="mb-3">
+          <label htmlFor="email" className="form-label">Email:</label>
+          <input name="email" type="email" id="email" className="form-control" required />
         </div>
-        <button type="submit">Login</button>
+
+        <div className="mb-3">
+          <label htmlFor="password" className="form-label">Password:</label>
+          <input name="password" type="password" id="password" className="form-control" required />
+        </div>
+
+        <button type="submit" className="btn btn-primary">Login</button>
       </form>
     </div>
   );
