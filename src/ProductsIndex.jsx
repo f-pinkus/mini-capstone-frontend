@@ -13,16 +13,24 @@ export function ProductsIndex({ products, onShow, onAddToCart }) {
                 className="card-img-top"
                 alt={product.name}
               />
-              <div className="card-body">
+              <div className="card-body d-flex flex-column">
                 <h5 className="card-title">{product.name}</h5>
                 <p className="card-text">Price: ${product.price}</p>
                 <p className="card-text">{product.description}</p>
-                <button onClick={() => onShow(product)} className="btn btn-outline-info me-2">
-                  More info
-                </button>
-                <button onClick={() => onAddToCart(product)} className="btn btn-outline-success">
-                  Add to Cart
-                </button>
+                <div className="mt-auto d-grid gap-2">
+                  <button
+                    onClick={() => onShow(product)}
+                    className="btn btn-outline-info w-100"
+                  >
+                    More info
+                  </button>
+                  <button
+                    onClick={() => onAddToCart(product)}
+                    className="btn btn-outline-success w-100"
+                  >
+                    Add to Cart
+                  </button>
+                </div>
               </div>
             </div>
           </div>

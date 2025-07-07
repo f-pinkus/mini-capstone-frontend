@@ -1,28 +1,26 @@
-.product-card img {
-  object-fit: cover;
-  height: 200px;
-  width: 100%;
-  border-radius: 8px;
-}
-
-.card .btn-outline-info {
+.navbar .btn-outline-primary {
   color: #ff88eb;
   border-color: #ff88eb;
 }
 
-.card .btn-outline-info:hover {
+.navbar .btn-outline-primary:hover {
   background-color: #ff88eb;
   border-color: #ff88eb;
   color: white;
 }
 
-.card .btn-outline-success {
+.container .btn-outline-danger {
   color: #920079;
   border-color: #920079;
 }
 
-.card .btn-outline-success:hover {
+.container .btn-outline-danger:hover {
   background-color: #920079;
   border-color: #920079;
   color: white;
+}
+
+.container .navbar-brand {
+  font-family: cursive;
+  font-size: 1.5em;
 }

@@ -1,3 +1,5 @@
+import "./Form.css";
+
 export function ProductsNew({ onCreate }) {
   const handleSubmit = (event) => {
     event.preventDefault();

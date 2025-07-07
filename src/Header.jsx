@@ -1,3 +1,4 @@
+import "./Header.css";
 import { Link } from "react-router-dom";
 import { LogoutLink } from "./LogoutLink";
 
@@ -16,7 +17,7 @@ export function Header({ isLoggedIn, setIsLoggedIn }) {
               </>
             ) : (
               <>
-                <Link to="/signup" className="btn btn-outline-success">Sign Up</Link>
+                <Link to="/signup" className="btn btn-outline-danger">Sign Up</Link>
                 <Link to="/login" className="btn btn-outline-primary">Login</Link>
               </>
             )}
