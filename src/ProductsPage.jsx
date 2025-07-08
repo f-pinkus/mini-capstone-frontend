@@ -16,7 +16,7 @@ export function ProductsPage() {
 
   const handleIndex = () => {
     console.log("handleIndex");
-    axios.get("http://localhost:3000/products.json").then((response) => {
+    axios.get("/products.json").then((response) => {
       console.log(response.data);
       setProducts(response.data);
     });
@@ -24,7 +24,7 @@ export function ProductsPage() {
 
   const handleCreate = (params, successCallback) => {
     console.log("handleCreate");
-    axios.post("http://localhost:3000/products.json", params)
+    axios.post("/products.json", params)
       .then((response) => {
         setProducts([...products, response.data]);
         successCallback();
