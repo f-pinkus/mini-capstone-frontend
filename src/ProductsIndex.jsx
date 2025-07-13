@@ -8,7 +8,13 @@ export function ProductsIndex({ products, onShow, onAddToCart }) {
     <div className="container">
       <h1>All products ({products.length} total)</h1>
 
-      Search filter: <input type="text" value={searchFilter} onChange={(event) => setSearchFilter(event.target.value)} />
+      Search filter: <input type="text" value={searchFilter} onChange={(event) => setSearchFilter(event.target.value)} list="names"/>
+
+      <datalist id="names">
+        {products.map(product => (
+          <option key={product.id}>{product.name}</option>
+        ))}
+      </datalist>
 
       <div className="row">
         {products
