@@ -1,11 +1,19 @@
 import "./ProductsIndex.css";
+import { useState } from "react";
 
 export function ProductsIndex({ products, onShow, onAddToCart }) {
+  const [searchFilter, setSearchFilter] = useState("");
+
   return (
     <div className="container">
       <h1>All products ({products.length} total)</h1>
+
+      Search filter: <input type="text" value={searchFilter} onChange={(event) => setSearchFilter(event.target.value)} />
+
       <div className="row">
-        {products.map((product) => (
+        {products
+        .filter((product) => product.name.toLowerCase().includes(searchFilter.toLowerCase()))
+        .map((product) => (
           <div key={product.id} className="col-12 col-sm-6 col-md-4 col-lg-3 mb-4">
             <div className="card h-100 product-card">
               <img

@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 
 export function OrdersPage() {
   const [orders, setOrders] = useState([]);
+  const [searchFilter, setSearchFilter] = useState("");
 
   const handleIndex = () => {
     console.log("handleIndex:)");
@@ -24,7 +25,11 @@ export function OrdersPage() {
 
       <p>You have <strong>{orders.length}</strong> past {orders.length === 1 ? "order" : "orders"}.</p>
 
-      {orders.map((order) => (
+      Search filter: <input type="text" value={searchFilter} onChange={(event) => setSearchFilter(event.target.value)} />
+
+      {orders
+      .filter((order) => order.id.toString().includes(searchFilter))
+      .map((order) => (
         <div key={order.id} className="mb-5 p-3 border rounded shadow-sm">
           <h3>Order #{order.id}</h3>
           <p><strong>Subtotal:</strong> ${order.subtotal}</p>

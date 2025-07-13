@@ -3,9 +3,12 @@ import axios from "axios";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
+
 export function SignupPage() {
   const [errors, setErrors] = useState([]);
   const navigate = useNavigate();
+  const [name, setName] = useState("");
+  const [status, setStatus] = useState(null);
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -20,12 +23,16 @@ export function SignupPage() {
       })
       .catch((error) => {
         console.log(error.response.data.errors);
+        setStatus(error.response.status);
         setErrors(error.response.data.errors);
       });
   };
 
   return (
     <div className="container my-5" id="signup">
+
+      {status ? <img src={`https://http.cat/${status}`} /> : null}
+
       <h1 className="mb-4">Signup</h1>
 
       {errors.length > 0 && (
@@ -41,8 +48,9 @@ export function SignupPage() {
       <form onSubmit={handleSubmit} className="needs-validation" noValidate>
         <div className="mb-3">
           <label htmlFor="name" className="form-label">Name:</label>
-          <input name="name" type="text" id="name" className="form-control" required />
+          <input name="name" value={name} onChange={(event) => setName(event.target.value.slice(0, 20))} type="text" id="name" className="form-control" required />
         </div>
+        <small>{20 - name.length} characters remaining</small>
 
         <div className="mb-3">
           <label htmlFor="email" className="form-label">Email:</label>
