@@ -25,7 +25,13 @@ export function OrdersPage() {
 
       <p>You have <strong>{orders.length}</strong> past {orders.length === 1 ? "order" : "orders"}.</p>
 
-      Search filter: <input type="text" value={searchFilter} onChange={(event) => setSearchFilter(event.target.value)} />
+      Search filter: <input type="text" value={searchFilter} onChange={(event) => setSearchFilter(event.target.value)} list="order-id"/>
+
+      <datalist id="order-id">
+        {orders.map(order => (
+          <option key={order.id}>{order.id}</option>
+        ))}
+      </datalist>
 
       {orders
       .filter((order) => order.id.toString().includes(searchFilter))
