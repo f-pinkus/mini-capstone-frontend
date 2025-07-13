@@ -3,6 +3,7 @@ import { useState } from "react";
 
 export function ProductsIndex({ products, onShow, onAddToCart }) {
   const [searchFilter, setSearchFilter] = useState("");
+  const [sortOption, setSortOption] = useState("");
 
   return (
     <div className="container">
@@ -16,9 +17,25 @@ export function ProductsIndex({ products, onShow, onAddToCart }) {
         ))}
       </datalist>
 
+      Sort by:
+      <select value={sortOption} onChange={(event) =>
+        setSortOption(event.target.value)}>
+          <option value="">No Sort</option>
+          <option value="a-z">A-Z</option>
+          <option value="z-a">Z-A</option>
+      </select>
+
       <div className="row">
         {products
         .filter((product) => product.name.toLowerCase().includes(searchFilter.toLowerCase()))
+        .sort((a, b) => {
+          if (sortOption === "a-z") {
+            return a.name.localeCompare(b.name)
+          } else if (sortOption === "z-a") {
+            return b.name.localeCompare(a.name)
+          }
+          return 0;
+        })
         .map((product) => (
           <div key={product.id} className="col-12 col-sm-6 col-md-4 col-lg-3 mb-4">
             <div className="card h-100 product-card">
